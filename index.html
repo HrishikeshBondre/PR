@@ -195,129 +195,138 @@ public class Main{
 </pr><br><br><br>
 
 <h2>Sevlet</h2>
-<p>import java.io.IOException;
-    import java.io.PrintWriter;
-    
-    import javax.servlet.ServletException;
-    import javax.servlet.annotation.WebServlet;
-    import javax.servlet.http.HttpServlet;
-    import javax.servlet.http.HttpServletRequest;
-    import javax.servlet.http.HttpServletResponse;
-    
-    @WebServlet("/hello")
-    public class SimpleServlet extends HttpServlet {
-    
-        @Override
-        public void init() throws ServletException {
-            System.out.println("Servlet is being initialized");
-        }
-    
-        @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
-    
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-    
-            out.println("<html><body>");
-            out.println("<h1>Welcome to Simple Servlet Example!</h1>");
-            out.println("</body></html>");
-        }
-    
-        @Override
-        public void destroy() {
-            System.out.println("Servlet is being destroyed");
-        }
-    }
+<p><p>
+import java.io.IOException;<br>
+import java.io.PrintWriter;<br><br>
+
+import javax.servlet.ServletException;<br>
+import javax.servlet.annotation.WebServlet;<br>
+import javax.servlet.http.HttpServlet;<br>
+import javax.servlet.http.HttpServletRequest;<br>
+import javax.servlet.http.HttpServletResponse;<br><br>
+
+@WebServlet(&quot;/hello&quot;)<br>
+public class SimpleServlet extends HttpServlet {<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public void init() throws ServletException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Servlet is being initialized&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;protected void doGet(HttpServletRequest request, HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throws ServletException, IOException {<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.setContentType(&quot;text/html&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PrintWriter out = response.getWriter();<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;html&gt;&lt;body&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;h1&gt;Welcome to Simple Servlet Example!&lt;/h1&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;/body&gt;&lt;/html&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public void destroy() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Servlet is being destroyed&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+</p>
+
     </p><br><br><br>
 
     <h2>Second Servlet</h2>
-    <p>import java.io.*;
-        import javax.servlet.*;
-        import javax.servlet.annotation.WebServlet;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        
-        @WebServlet("/demo")
-        public class DemoServlet extends GenericServlet {
-        
-            private ServletConfig config;
-        
-            @Override
-            public void init(ServletConfig config) throws ServletException {
-                this.config = config;
-                System.out.println("Servlet initialized.");
-            }
-        
-            @Override
-            public void service(ServletRequest request, ServletResponse response)
-                    throws ServletException, IOException {
-        
-                response.setContentType("text/html");
-                PrintWriter out = response.getWriter();
-        
-                String userName = request.getParameter("username");
-                String configParam = config.getInitParameter("configParam");
-        
-                ServletContext context = config.getServletContext();
-                String contextParam = context.getInitParameter("contextParam");
-        
-                out.println("<html><body>");
-                out.println("<h2>Servlet Demo: javax.servlet Package Usage</h2>");
-        
-                if (userName != null) {
-                    out.println("<p>Username received from request: " + userName + "</p>");
-                } else {
-                    out.println("<p>No username provided.</p>");
-                }
-        
-                out.println("<p>ServletConfig Parameter: " + configParam + "</p>");
-                out.println("<p>ServletContext Parameter: " + contextParam + "</p>");
-                out.println("</body></html>");
-            }
-        
-            @Override
-            public void destroy() {
-                System.out.println("Servlet is being destroyed.");
-            }
-        
-            @Override
-            public ServletConfig getServletConfig() {
-                return this.config;
-            }
-        
-            @Override
-            public String getServletInfo() {
-                return "DemoServlet for demonstrating javax.servlet components.";
-            }
-        }
+    <p><p>
+import java.io.*;<br>
+import javax.servlet.*;<br>
+import javax.servlet.annotation.WebServlet;<br>
+import javax.servlet.http.HttpServletRequest;<br>
+import javax.servlet.http.HttpServletResponse;<br><br>
+
+@WebServlet(&quot;/demo&quot;)<br>
+public class DemoServlet extends GenericServlet {<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;private ServletConfig config;<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public void init(ServletConfig config) throws ServletException {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.config = config;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Servlet initialized.&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public void service(ServletRequest request, ServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throws ServletException, IOException {<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.setContentType(&quot;text/html&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PrintWriter out = response.getWriter();<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String userName = request.getParameter(&quot;username&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String configParam = config.getInitParameter(&quot;configParam&quot;);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ServletContext context = config.getServletContext();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String contextParam = context.getInitParameter(&quot;contextParam&quot;);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;html&gt;&lt;body&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;h2&gt;Servlet Demo: javax.servlet Package Usage&lt;/h2&gt;&quot;);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (userName != null) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;p&gt;Username received from request: &quot; + userName + &quot;&lt;/p&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;p&gt;No username provided.&lt;/p&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;p&gt;ServletConfig Parameter: &quot; + configParam + &quot;&lt;/p&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;p&gt;ServletContext Parameter: &quot; + contextParam + &quot;&lt;/p&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;/body&gt;&lt;/html&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public void destroy() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(&quot;Servlet is being destroyed.&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public ServletConfig getServletConfig() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this.config;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;public String getServletInfo() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &quot;DemoServlet for demonstrating javax.servlet components.&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+</p>
+
         </p><br><br><br>
 
         <h2>3rd Servlet</h2>
         <p>
-            import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.*;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+            <p>
+import java.io.IOException;<br>
+import java.io.PrintWriter;<br>
+import javax.servlet.*;<br>
+import javax.servlet.annotation.WebServlet;<br>
+import javax.servlet.http.*;<br><br>
 
-@WebServlet("/hello")
-public class HelloServlet extends HttpServlet {
+@WebServlet(&quot;/hello&quot;)<br>
+public class HelloServlet extends HttpServlet {<br><br>
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+&nbsp;&nbsp;&nbsp;&nbsp;@Override<br>
+&nbsp;&nbsp;&nbsp;&nbsp;protected void doPost(HttpServletRequest request, HttpServletResponse response)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throws ServletException, IOException {<br><br>
 
-        response.setContentType("text/html");
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response.setContentType(&quot;text/html&quot;);<br><br>
 
-        String name = request.getParameter("username");
-        PrintWriter out = response.getWriter();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String name = request.getParameter(&quot;username&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PrintWriter out = response.getWriter();<br><br>
 
-        out.println("<html><body>");
-        out.println("<h1>Hello, " + name + "!</h1>");
-        out.println("</body></html>");
-    }
-}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;html&gt;&lt;body&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;h1&gt;Hello, &quot; + name + &quot;!&lt;/h1&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out.println(&quot;&lt;/body&gt;&lt;/html&gt;&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+</p>
+
 <br><br>
 
     &lt;!DOCTYPE html&gt;<br>
