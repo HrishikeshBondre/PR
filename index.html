@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>
+        InetAddres
+    </h2>
+    <p>
+        import java.net.*;
+
+public class InetAddressExample {
+    public static void main(String args[]) throws UnknownHostException {
+        InetAddress address = InetAddress.getLocalHost();
+        System.out.println("Local Host: " + address);
+
+        address = InetAddress.getByName("youtube.com");
+        System.out.println("youtube.com: " + address);
+
+        InetAddress[] addresses = InetAddress.getAllByName("www.google.com");
+        System.out.println("All IPs of www.google.com:");
+        for (int i = 0; i < addresses.length; i++) {
+            System.out.println(addresses[i]);
+        }
+    }
+}
+
+    </p><br><br><br>
+
+    <h2>Client Server</h2>
+    <p>import java.net.*;
+        import java.io.*;
+        
+        public class client{
+            public static void main(String args[]) throws IOException{
+            Socket s = new Socket("localhost", 4999);
+        
+            PrintWriter pr = new PrintWriter(s.getOutputStream());
+            pr.println("is it working");
+            pr.flush();
+        
+            InputStreamReader in = new InputStreamReader(s.getInputStream());
+            BufferedReader bf = new BufferedReader(in);
+        
+            String str = bf.readLine();
+            System.out.println("Server: " +str);
+        
+        
+            }
+        }
+        
+        server.java :
+        import java.net.*;
+        import java.io.*;
+        
+        public class server{
+            public static void main(String args[]) throws IOException{
+            ServerSocket ss = new ServerSocket(4999);
+            Socket s = ss.accept();
+        
+            System.out.println("Client Connected");
+        
+            InputStreamReader in = new InputStreamReader(s.getInputStream());
+            BufferedReader bf = new BufferedReader(in);
+        
+            String str = bf.readLine();
+            System.out.println("Client: " +str);
+        
+            PrintWriter pr = new PrintWriter(s.getOutputStream());
+            pr.println("Yes");
+            pr.flush();
+            }
+        }
+        </p><br><br><br>
+
+        <h2>URL URI</h2>
+        <p>
+            import java.net.*;
+
+class URLExample {
+    public static void main(String args[]) throws MalformedURLException {
+        URL obj = new URL("http://www.google.com/downloads");
+        System.out.println("Protocol: " + obj.getProtocol());
+        System.out.println("Port: " + obj.getPort());
+        System.out.println("Host: " + obj.getHost());
+        System.out.println("File: " + obj.getFile());
+        System.out.println("Ext: " + obj.toExternalForm());
+    }
+}
+
+import java.net.*;
+
+public class URIExample {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://www.example.com:8080/path/to/page?search=query#section1");
+
+            System.out.println("URL: " + url);
+            System.out.println("Protocol: " + url.getProtocol());
+            System.out.println("Host: " + url.getHost());
+            System.out.println("Port: " + (url.getPort() != -1 ? url.getPort() : url.getDefaultPort()));
+            System.out.println("Path: " + url.getPath());
+            System.out.println("Query: " + url.getQuery());
+            System.out.println("Ref (Fragment): " + url.getRef());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+</p><br><br><br>
+<h2>Runnable</h2>
+<p>class RInt implements Runnable{
+    public void run(){
+        try{
+            System.out.println("Current Thread: " + Thread.currentThread().getName());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+}
+
+class RInt2 implements Runnable{
+    public void run(){
+        try{
+            System.out.println("Current Thread: " + Thread.currentThread().getName());
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+    }
+}
+
+
+public class exp2 {
+    public static void main(String args[]){
+        int n =7;
+        for(int i = 0; i<=n; i++){
+            if(i==5){
+             RInt obj = new RInt();
+             Thread t = new Thread(obj);
+             t.setName("GPM");
+             System.out.println("Thread: "+t.getState());
+             t.start();
+
+             RInt2 obj1 = new RInt2();
+             Thread t1 = new Thread(obj1);
+             t.setName("GPM");
+             System.out.println("Thread: "+t1.getState());
+             t.start();
+            }
+            else{
+                RInt obj = new RInt();
+                Thread t = new Thread(obj);
+                t.start();
+
+                RInt2 obj1 = new RInt2();
+                Thread t1 = new Thread(obj1);
+                t1.start();
+            }
+        }
+    }
+}
+</p><br><br><br>
+
+<h2>First</h2>
+<pr>class MyThread extends Thread {
+    public void run(){
+        try{
+            System.out.println("Current Thread: "+ currentThread());
+            System.out.println("Name: "+ getName());
+            System.out.println("Alive or Not: "+ isAlive());
+        }
+        catch(Exception x){
+            System.out.println("Exception caught");
+        }
+    }
+    
+}
+
+public class Main{
+    public static void main(String args[]){
+        int n = 7;
+        for(int i = 0; i<=n; i++ ){
+            MyThread obj = new MyThread();
+            obj.start();
+        }
+    }
+}
+</pr><br><br><br>
+
+<h2>Sevlet</h2>
+<p>import java.io.IOException;
+    import java.io.PrintWriter;
+    
+    import javax.servlet.ServletException;
+    import javax.servlet.annotation.WebServlet;
+    import javax.servlet.http.HttpServlet;
+    import javax.servlet.http.HttpServletRequest;
+    import javax.servlet.http.HttpServletResponse;
+    
+    @WebServlet("/hello")
+    public class SimpleServlet extends HttpServlet {
+    
+        @Override
+        public void init() throws ServletException {
+            System.out.println("Servlet is being initialized");
+        }
+    
+        @Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+    
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+    
+            out.println("<html><body>");
+            out.println("<h1>Welcome to Simple Servlet Example!</h1>");
+            out.println("</body></html>");
+        }
+    
+        @Override
+        public void destroy() {
+            System.out.println("Servlet is being destroyed");
+        }
+    }
+    </p><br><br><br>
+
+    <h2>Second Servlet</h2>
+    <p>import java.io.*;
+        import javax.servlet.*;
+        import javax.servlet.annotation.WebServlet;
+        import javax.servlet.http.HttpServletRequest;
+        import javax.servlet.http.HttpServletResponse;
+        
+        @WebServlet("/demo")
+        public class DemoServlet extends GenericServlet {
+        
+            private ServletConfig config;
+        
+            @Override
+            public void init(ServletConfig config) throws ServletException {
+                this.config = config;
+                System.out.println("Servlet initialized.");
+            }
+        
+            @Override
+            public void service(ServletRequest request, ServletResponse response)
+                    throws ServletException, IOException {
+        
+                response.setContentType("text/html");
+                PrintWriter out = response.getWriter();
+        
+                String userName = request.getParameter("username");
+                String configParam = config.getInitParameter("configParam");
+        
+                ServletContext context = config.getServletContext();
+                String contextParam = context.getInitParameter("contextParam");
+        
+                out.println("<html><body>");
+                out.println("<h2>Servlet Demo: javax.servlet Package Usage</h2>");
+        
+                if (userName != null) {
+                    out.println("<p>Username received from request: " + userName + "</p>");
+                } else {
+                    out.println("<p>No username provided.</p>");
+                }
+        
+                out.println("<p>ServletConfig Parameter: " + configParam + "</p>");
+                out.println("<p>ServletContext Parameter: " + contextParam + "</p>");
+                out.println("</body></html>");
+            }
+        
+            @Override
+            public void destroy() {
+                System.out.println("Servlet is being destroyed.");
+            }
+        
+            @Override
+            public ServletConfig getServletConfig() {
+                return this.config;
+            }
+        
+            @Override
+            public String getServletInfo() {
+                return "DemoServlet for demonstrating javax.servlet components.";
+            }
+        }
+        </p><br><br><br>
+
+        <h2>3rd Servlet</h2>
+        <p>
+            import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+@WebServlet("/hello")
+public class HelloServlet extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+
+        String name = request.getParameter("username");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><body>");
+        out.println("<h1>Hello, " + name + "!</h1>");
+        out.println("</body></html>");
+    }
+}
+<br><br>
+
+    &lt;!DOCTYPE html&gt;<br>
+    &lt;html&gt;<br>
+    &lt;head&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;Login Page&lt;/title&gt;<br>
+    &lt;/head&gt;<br>
+    &lt;body&gt;<br><br>
+    
+    &lt;h2&gt;Enter Your Name&lt;/h2&gt;<br><br>
+    
+    &lt;form action=&quot;hello&quot; method=&quot;post&quot;&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;name&quot;&gt;Name:&lt;/label&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;username&quot; required&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;&lt;br&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;submit&quot; value=&quot;Login&quot;&gt;<br>
+    &lt;/form&gt;<br><br>
+    
+    &lt;/body&gt;<br>
+    &lt;/html&gt;
+    </p>
+    
+
+
+    
+</body>
+</html>
